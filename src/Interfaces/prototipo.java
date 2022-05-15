@@ -25,7 +25,7 @@ public class prototipo extends javax.swing.JFrame {
     public prototipo() {
         initComponents();
         Cargar_Moneda();
-        Cargar_Datos();
+//        Cargar_Datos();
     }
 
     public void Cargar_Moneda() {
@@ -46,23 +46,23 @@ public class prototipo extends javax.swing.JFrame {
         }
     }
 
-    public void Cargar_Datos() {
-        Connection con = Conexion.getConexion();
-        try {
-            Statement stmt = con.createStatement();
-            String codmoneda = cbmonedas.getSelectedItem().toString();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM CLIENTE WHERE CODMONEDA='" + codmoneda + "'");
-
-            while (rs.next()) {
-                txtfondos.setText(rs.getString("FONDOS"));
-            }
-
-            rs.close();
-            stmt.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    public void Cargar_Datos() {
+//        Connection con = Conexion.getConexion();
+//        try {
+//            Statement stmt = con.createStatement();
+//            String codmoneda = cbmonedas.getSelectedItem().toString();
+//            ResultSet rs = stmt.executeQuery("SELECT * FROM CLIENTE WHERE CODMONEDA='" + codmoneda + "'");
+//
+//            while (rs.next()) {
+//                txtMonto.setText(rs.getString("FONDOS"));
+//            }
+//
+//            rs.close();
+//            stmt.close();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     void Tipo_Cambio() {
         Connection con = Conexion.getConexion();
@@ -85,8 +85,8 @@ public class prototipo extends javax.swing.JFrame {
         double usd = 0;
         double fondos = 0;
         double tcambio = 0;
-        if (txtfondos != null) {
-            fondos = Double.parseDouble(txtfondos.getText());
+        if (txtMonto != null) {
+            fondos = Double.parseDouble(txtMonto.getText());
         }
         if (txttcambio != null) {
             tcambio = Double.parseDouble(txttcambio.getText());
@@ -107,7 +107,7 @@ public class prototipo extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         cbmonedas = new javax.swing.JComboBox<>();
-        txtfondos = new javax.swing.JTextField();
+        txtMonto = new javax.swing.JTextField();
         txtusd = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -128,20 +128,26 @@ public class prototipo extends javax.swing.JFrame {
             }
         });
 
-        txtfondos.setText("0");
-        txtfondos.addActionListener(new java.awt.event.ActionListener() {
+        txtMonto.setText("0");
+        txtMonto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtfondosActionPerformed(evt);
+                txtMontoActionPerformed(evt);
             }
         });
 
         txtusd.setText("0");
+        txtusd.setEnabled(false);
 
         jLabel2.setText("USD");
 
-        jLabel3.setText("Fondos");
+        jLabel3.setText("Monto");
 
         jButton1.setText("comprar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Vender");
 
@@ -150,6 +156,7 @@ public class prototipo extends javax.swing.JFrame {
         jLabel4.setText("T.Cambio:");
 
         txttcambio.setText("0");
+        txttcambio.setEnabled(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -174,7 +181,7 @@ public class prototipo extends javax.swing.JFrame {
                                         .addComponent(jLabel1)
                                         .addGap(18, 18, 18))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(txtfondos)
+                                        .addComponent(txtMonto)
                                         .addGap(41, 41, 41)))
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -199,7 +206,7 @@ public class prototipo extends javax.swing.JFrame {
                     .addComponent(txttcambio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtfondos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -227,15 +234,19 @@ public class prototipo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtfondosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtfondosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtfondosActionPerformed
+    private void txtMontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMontoActionPerformed
+        calcular_usd();
+    }//GEN-LAST:event_txtMontoActionPerformed
 
     private void cbmonedasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbmonedasItemStateChanged
-        Cargar_Datos();
+//        Cargar_Datos();
         Tipo_Cambio();
         calcular_usd();
     }//GEN-LAST:event_cbmonedasItemStateChanged
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -282,7 +293,7 @@ public class prototipo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txtfondos;
+    private javax.swing.JTextField txtMonto;
     private javax.swing.JTextField txttcambio;
     private javax.swing.JTextField txtusd;
     // End of variables declaration//GEN-END:variables
