@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DecimalFormat;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,14 +23,16 @@ public class Tranferencias extends javax.swing.JFrame {
     /**
      * Creates new form Tranferencias
      */
-    String Usuario = "ADMIN";
-    int IdCartera = 0;
+    private String Usuario = "";
 
     public Tranferencias() {
         initComponents();
         Cargar_Moneda();
+        obtenerMontoCuentaUSDT();
+        obtenerMontosoloUSDT();
         setLocationRelativeTo(null);
-//        Cargar_Datos();
+        JFormLogin login = new JFormLogin();
+        Usuario = login.Usuario;      
     }
 
     public void Cargar_Moneda() {
@@ -45,28 +48,11 @@ public class Tranferencias extends javax.swing.JFrame {
             }
             rs.close();
             stmt.close();
-        } catch (Exception e) {
+        } catch (SQLException e) {          
             e.printStackTrace();
         }
     }
 
-//    public void Cargar_Datos() {
-//        Connection con = Conexion.getConexion();
-//        try {
-//            Statement stmt = con.createStatement();
-//            String codmoneda = cbmonedas.getSelectedItem().toString();
-//            ResultSet rs = stmt.executeQuery("SELECT * FROM CLIENTE WHERE CODMONEDA='" + codmoneda + "'");
-//
-//            while (rs.next()) {
-//                txtMonto.setText(rs.getString("FONDOS"));
-//            }
-//
-//            rs.close();
-//            stmt.close();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
     void Tipo_Cambio() {
         Connection con = Conexion.getConexion();
         try {
@@ -94,7 +80,9 @@ public class Tranferencias extends javax.swing.JFrame {
         if (txttcambio != null) {
             tcambio = Double.parseDouble(txttcambio.getText());
         }
-        double monto = fondos * tcambio;
+           DecimalFormat df = new DecimalFormat("#0.0000");
+//        double monto =Math.round((fondos * tcambio)*100.0)/100.0;
+        String monto=df.format(fondos * tcambio);
         txtusd.setText("" + monto);
     }
 
@@ -126,7 +114,7 @@ public class Tranferencias extends javax.swing.JFrame {
             }
             rs.close();
             stmt.close();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
@@ -144,7 +132,7 @@ public class Tranferencias extends javax.swing.JFrame {
             }
             rs.close();
             stmt.close();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
@@ -359,9 +347,8 @@ public class Tranferencias extends javax.swing.JFrame {
     }//GEN-LAST:event_txtMontoActionPerformed
 
     private void cbmonedasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbmonedasItemStateChanged
-//        Cargar_Datos();
+
         Tipo_Cambio();
-//        obtenerIDcartera();
         calcular_usd();
         obtenerMontoCuentaUSDT();
         obtenerMontosoloUSDT();
@@ -412,28 +399,27 @@ public class Tranferencias extends javax.swing.JFrame {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-            
+
             } else {
                 JOptionPane.showMessageDialog(null, "No existen Fondos en tu cartera para vender");
 
             }
-        }
-        else {
-                JOptionPane.showMessageDialog(null, "No existen Fondos en tu cartera para vender");
+        } else {
+            JOptionPane.showMessageDialog(null, "No existen Fondos en tu cartera para vender");
 
-            }
+        }
 
     }//GEN-LAST:event_btvenderActionPerformed
 
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
-          JFormInterfaz inter = new JFormInterfaz();       
-            inter.setVisible(true);
-            this.dispose();
+        JFormInterfaz inter = new JFormInterfaz();
+        inter.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnAtrasActionPerformed
 
     /**
-         * @param args the command line arguments
-         */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

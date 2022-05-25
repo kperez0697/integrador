@@ -6,7 +6,6 @@
 package Interfaces;
 
 import Clases.Conexion;
-import Interfaces.Tranferencias;
 import java.awt.Image;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -27,7 +26,7 @@ public class JFormLogin extends javax.swing.JFrame {
         this.setLocationRelativeTo(this);
         this.pintarImagen(JLabelImagen, "src/Imagenes/ethnegro.jpg");
     }
-
+    public static String Usuario="";
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -115,6 +114,7 @@ public class JFormLogin extends javax.swing.JFrame {
     private void btnDesbloquearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDesbloquearActionPerformed
         JFormInterfaz inter = new JFormInterfaz();       
         if (ExisteUsuario() == true) {
+            Usuario=txtUsuario.getText();
             inter.setVisible(true);
             this.dispose();
         } else {
@@ -131,11 +131,10 @@ public class JFormLogin extends javax.swing.JFrame {
         Connection con = Conexion.getConexion();
         try {
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM USUARIO WHERE USUARIO='" + txtUsuario.getText() + "' AND CONTRA='" + txtContra.getText() + "'");
-            
+            ResultSet rs = stmt.executeQuery("SELECT * FROM USUARIO WHERE USUARIO='" + txtUsuario.getText() + "' AND CONTRA='" + txtContra.getText() + "'");          
             while (rs.next()) {
                 bexis = true;
-            }
+            }      
             rs.close();
             stmt.close();
             return bexis;

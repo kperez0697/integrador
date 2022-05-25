@@ -16,7 +16,8 @@ public class JFormInterfaz extends javax.swing.JFrame {
      */
     public JFormInterfaz() {
         initComponents();
-        this.setLocationRelativeTo(this);
+        this.setLocationRelativeTo(null);
+
     }
 
     /**
@@ -55,6 +56,7 @@ public class JFormInterfaz extends javax.swing.JFrame {
         jLabel25 = new javax.swing.JLabel();
         btnHistorial = new javax.swing.JButton();
         btnTranferencias = new javax.swing.JButton();
+        btnRecargarFondos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -122,24 +124,17 @@ public class JFormInterfaz extends javax.swing.JFrame {
             }
         });
 
+        btnRecargarFondos.setText("Recargar Fondos(USDT)");
+        btnRecargarFondos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRecargarFondosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(87, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel2)
-                        .addGap(109, 109, 109))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addGap(200, 200, 200))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addGap(74, 74, 74))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(62, 62, 62)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,14 +179,30 @@ public class JFormInterfaz extends javax.swing.JFrame {
                 .addComponent(jLabel25)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(362, 362, 362)
-                        .addComponent(btnHistorial))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(166, 166, 166)
-                        .addComponent(btnTranferencias)))
+                .addGap(362, 362, 362)
+                .addComponent(btnHistorial)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(87, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addGap(200, 200, 200))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addGap(74, 74, 74))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addGap(18, 18, 18))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnTranferencias)
+                                .addGap(33, 33, 33)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnRecargarFondos)
+                            .addComponent(jLabel2))
+                        .addGap(57, 57, 57))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -205,7 +216,9 @@ public class JFormInterfaz extends javax.swing.JFrame {
                     .addComponent(jLabel8)
                     .addComponent(jLabel2))
                 .addGap(30, 30, 30)
-                .addComponent(btnTranferencias)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnTranferencias)
+                    .addComponent(btnRecargarFondos))
                 .addGap(44, 44, 44)
                 .addComponent(jLabel25)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
@@ -248,10 +261,16 @@ public class JFormInterfaz extends javax.swing.JFrame {
 
     private void btnTranferenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTranferenciasActionPerformed
 
-        Tranferencias trans = new Tranferencias();      
-            trans.setVisible(true);
-            this.dispose();
+        Tranferencias trans = new Tranferencias();
+        trans.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnTranferenciasActionPerformed
+
+    private void btnRecargarFondosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecargarFondosActionPerformed
+        RecargaFondos trans = new RecargaFondos();
+        trans.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnRecargarFondosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -291,6 +310,7 @@ public class JFormInterfaz extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHistorial;
+    private javax.swing.JButton btnRecargarFondos;
     private javax.swing.JButton btnTranferencias;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
