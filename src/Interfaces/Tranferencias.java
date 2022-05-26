@@ -27,12 +27,13 @@ public class Tranferencias extends javax.swing.JFrame {
 
     public Tranferencias() {
         initComponents();
+        JFormLogin login = new JFormLogin();
+        Usuario = login.Usuariotrans;  
         Cargar_Moneda();
         obtenerMontoCuentaUSDT();
         obtenerMontosoloUSDT();
         setLocationRelativeTo(null);
-        JFormLogin login = new JFormLogin();
-        Usuario = login.Usuario;      
+            
     }
 
     public void Cargar_Moneda() {
@@ -80,9 +81,9 @@ public class Tranferencias extends javax.swing.JFrame {
         if (txttcambio != null) {
             tcambio = Double.parseDouble(txttcambio.getText());
         }
-           DecimalFormat df = new DecimalFormat("#0.0000");
+          DecimalFormat df = new DecimalFormat("#0.0000");
 //        double monto =Math.round((fondos * tcambio)*100.0)/100.0;
-        String monto=df.format(fondos * tcambio);
+        String monto = df.format(fondos * tcambio);
         txtusd.setText("" + monto);
     }
 
@@ -412,7 +413,7 @@ public class Tranferencias extends javax.swing.JFrame {
     }//GEN-LAST:event_btvenderActionPerformed
 
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
-        JFormInterfaz inter = new JFormInterfaz();
+        JFormInterfaz inter = new JFormInterfaz(Usuario);
         inter.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnAtrasActionPerformed

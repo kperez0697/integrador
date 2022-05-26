@@ -28,7 +28,7 @@ public class RecargaFondos extends javax.swing.JFrame {
         Cargar_Moneda();
         setLocationRelativeTo(null);
         JFormLogin login = new JFormLogin();
-        Usuario = login.Usuario;
+        Usuario = login.Usuariotrans;
     }
 
     /**
@@ -215,7 +215,7 @@ public class RecargaFondos extends javax.swing.JFrame {
     }//GEN-LAST:event_txtMontoActionPerformed
 
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
-        JFormInterfaz inter = new JFormInterfaz();
+        JFormInterfaz inter = new JFormInterfaz(Usuario);
         inter.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnAtrasActionPerformed
