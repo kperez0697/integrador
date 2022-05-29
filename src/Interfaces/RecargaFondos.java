@@ -82,7 +82,7 @@ public class RecargaFondos extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setText("Fecha de Nacimiento");
+        jLabel5.setText("Fecha de Vencimiento");
 
         jLabel6.setText("Codigo de Seguridad (CVV)");
 
