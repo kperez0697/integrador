@@ -8,8 +8,12 @@ package Interfaces;
 import Clases.Conexion;
 import java.awt.Image;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -27,6 +31,7 @@ public class JFormLogin extends javax.swing.JFrame {
         this.pintarImagen(JLabelImagen, "src/Imagenes/ethnegro.jpg");
     }
     public static String Usuariotrans = "";
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -43,6 +48,7 @@ public class JFormLogin extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         JLabelImagen = new javax.swing.JLabel();
         txtContra = new javax.swing.JPasswordField();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,7 +59,7 @@ public class JFormLogin extends javax.swing.JFrame {
         jLabel2.setText("Contraseña");
 
         btnDesbloquear.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnDesbloquear.setText("Desbloquear");
+        btnDesbloquear.setText("IGRESAR");
         btnDesbloquear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDesbloquearActionPerformed(evt);
@@ -65,47 +71,61 @@ public class JFormLogin extends javax.swing.JFrame {
 
         JLabelImagen.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        jButton1.setText("REGISTRARSE");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(114, 114, 114)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtContra, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(JLabelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(38, 38, 38)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel1)
-                                .addComponent(txtContra)))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(127, 127, 127)
-                            .addComponent(btnDesbloquear, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(153, 153, 153)
-                            .addComponent(jLabel3))))
-                .addContainerGap(137, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(153, 153, 153)
+                                .addComponent(jLabel3))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(38, 38, 38)
+                                .addComponent(btnDesbloquear, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(19, 19, 19)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(36, 36, 36))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(JLabelImagen, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+                .addComponent(JLabelImagen, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
                 .addGap(35, 35, 35)
                 .addComponent(jLabel3)
-                .addGap(18, 18, 18)
+                .addGap(22, 22, 22)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(txtContra, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41)
-                .addComponent(btnDesbloquear, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnDesbloquear, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50))
         );
 
         pack();
@@ -126,6 +146,16 @@ public class JFormLogin extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnDesbloquearActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if (ExisteUsuario() == true) {
+            JOptionPane.showMessageDialog(null, "Usuario ya existe");
+        } else {
+            if (agregar() == true) {
+                JOptionPane.showMessageDialog(null, "Usuario creado");
+            }
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
     boolean ExisteUsuario() {
         boolean bexis = false;
         Connection con = Conexion.getConexion();
@@ -142,6 +172,27 @@ public class JFormLogin extends javax.swing.JFrame {
             e.printStackTrace();
         }
         return bexis;
+    }
+
+    public boolean agregar() {
+        boolean bsave = false;
+        Connection con = Conexion.getConexion();
+        try {
+            String sql = "INSERT INTO USUARIO VALUES('" + txtUsuario.getText() + "' ,'" + txtContra.getText() + "') \n"
+                    + "DECLARE @LASTID AS INT \n"
+                    + "SET @LASTID=(SELECT TOP 1 ISNULL(IDCARTERA,1)IDCARTERA FROM CLIENTE ORDER BY IDCARTERA DESC)\n"
+                    + "INSERT INTO CLIENTE VALUES(@LASTID+1,0.00,'BTC','" + txtUsuario.getText() + "')\n"
+                    + "INSERT INTO CLIENTE VALUES(@LASTID+1,0.00,'OASI','" + txtUsuario.getText() + "')\n"
+                    + "INSERT INTO CLIENTE VALUES(@LASTID+1,0.00,'USDT','" + txtUsuario.getText() + "')";
+
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.executeUpdate();
+            stmt.close();
+            bsave = true;
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return bsave;
     }
 
     /**
@@ -193,6 +244,7 @@ public class JFormLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel JLabelImagen;
     private javax.swing.JButton btnDesbloquear;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

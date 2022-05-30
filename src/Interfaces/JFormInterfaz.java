@@ -120,6 +120,7 @@ public final class JFormInterfaz extends javax.swing.JFrame {
         btnHistorial = new javax.swing.JButton();
         btnTranferencias = new javax.swing.JButton();
         btnRecargarFondos = new javax.swing.JButton();
+        btnsalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -178,6 +179,13 @@ public final class JFormInterfaz extends javax.swing.JFrame {
             }
         });
 
+        btnsalir.setText("Salir");
+        btnsalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnsalirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -233,10 +241,13 @@ public final class JFormInterfaz extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnRecargarFondos)
                             .addComponent(jLabel2))
-                        .addGap(57, 57, 57))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnHistorial)
-                        .addGap(22, 22, 22))))
+                        .addGap(57, 57, 57))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(btnsalir)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnHistorial)
+                .addGap(22, 22, 22))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -274,8 +285,10 @@ public final class JFormInterfaz extends javax.swing.JFrame {
                     .addComponent(poroasi)
                     .addComponent(jLabel19))
                 .addGap(87, 87, 87)
-                .addComponent(btnHistorial)
-                .addGap(68, 68, 68))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnHistorial)
+                    .addComponent(btnsalir))
+                .addGap(67, 67, 67))
         );
 
         pack();
@@ -293,6 +306,12 @@ public final class JFormInterfaz extends javax.swing.JFrame {
         trans.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnRecargarFondosActionPerformed
+
+    private void btnsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalirActionPerformed
+        JFormLogin trans = new JFormLogin();
+        trans.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnsalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -334,6 +353,7 @@ public final class JFormInterfaz extends javax.swing.JFrame {
     private javax.swing.JButton btnHistorial;
     private javax.swing.JButton btnRecargarFondos;
     private javax.swing.JButton btnTranferencias;
+    private javax.swing.JButton btnsalir;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel16;
