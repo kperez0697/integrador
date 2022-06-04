@@ -28,12 +28,12 @@ public class Tranferencias extends javax.swing.JFrame {
     public Tranferencias() {
         initComponents();
         JFormLogin login = new JFormLogin();
-        Usuario = login.Usuariotrans;  
+        Usuario = login.Usuariotrans;
         Cargar_Moneda();
         obtenerMontoCuentaUSDT();
         obtenerMontosoloUSDT();
         setLocationRelativeTo(null);
-            
+
     }
 
     public void Cargar_Moneda() {
@@ -49,7 +49,7 @@ public class Tranferencias extends javax.swing.JFrame {
             }
             rs.close();
             stmt.close();
-        } catch (SQLException e) {          
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
@@ -81,7 +81,7 @@ public class Tranferencias extends javax.swing.JFrame {
         if (txttcambio != null) {
             tcambio = Double.parseDouble(txttcambio.getText());
         }
-          DecimalFormat df = new DecimalFormat("#0.0000");
+        DecimalFormat df = new DecimalFormat("#0.0000");
 //        double monto =Math.round((fondos * tcambio)*100.0)/100.0;
         String monto = df.format(fondos * tcambio);
         txtusd.setText("" + monto);
@@ -170,7 +170,6 @@ public class Tranferencias extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         btcomprar = new javax.swing.JButton();
         btvender = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         txttcambio = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -218,8 +217,6 @@ public class Tranferencias extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("Enviar");
-
         jLabel4.setText("T.Cambio:");
 
         txttcambio.setText("0");
@@ -243,8 +240,14 @@ public class Tranferencias extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btcomprar)
+                        .addGap(30, 30, 30)
+                        .addComponent(btvender))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(39, 39, 39)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtusd, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -252,7 +255,7 @@ public class Tranferencias extends javax.swing.JFrame {
                                         .addGap(18, 18, 18))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(txtMonto)
-                                        .addGap(41, 41, 41)))
+                                        .addGap(10, 10, 10)))
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(cbmonedas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -260,31 +263,18 @@ public class Tranferencias extends javax.swing.JFrame {
                                         .addComponent(jLabel4))
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(jLabel3)
-                                        .addComponent(jLabel2))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(84, 84, 84)
-                                        .addComponent(jButton3))))
-                            .addComponent(txtusd, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btcomprar)
-                        .addGap(30, 30, 30)
-                        .addComponent(btvender)))
+                                        .addComponent(jLabel2)))))))
+                .addGap(7, 7, 7)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(txttcambio, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel5)
+                            .addComponent(txttcambio, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(42, 42, 42)
                                 .addComponent(txtfondos, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnAtras)))
+                    .addComponent(btnAtras, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -319,8 +309,7 @@ public class Tranferencias extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btcomprar)
-                    .addComponent(btvender)
-                    .addComponent(jButton3))
+                    .addComponent(btvender))
                 .addContainerGap(25, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -357,12 +346,12 @@ public class Tranferencias extends javax.swing.JFrame {
 
     private void btcomprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btcomprarActionPerformed
         ExisteFondosCompra();
-        if (exisfondoscompra > 0) {
+        double usdt = Double.parseDouble(txtusd.getText());
+        if (exisfondoscompra > 0 & exisfondoscompra > usdt) {
             Connection con = Conexion.getConexion();
             try {
                 double monto = Double.parseDouble(txtMonto.getText());
                 String codmoneda = cbmonedas.getSelectedItem().toString();
-                double usdt = Double.parseDouble(txtusd.getText());
                 String sql = "UPDATE CLIENTE SET FONDOS=" + monto + "+FONDOS WHERE USUARIO='" + Usuario + "' AND CODMONEDA='" + codmoneda + "' \n"
                         + "UPDATE CLIENTE SET FONDOS=FONDOS-" + usdt + " WHERE USUARIO='" + Usuario + "' AND CODMONEDA='USDT'";
                 PreparedStatement stmt = con.prepareStatement(sql);
@@ -459,7 +448,6 @@ public class Tranferencias extends javax.swing.JFrame {
     private javax.swing.JButton btnAtras;
     private javax.swing.JButton btvender;
     private javax.swing.JComboBox<String> cbmonedas;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

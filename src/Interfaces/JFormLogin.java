@@ -151,7 +151,12 @@ public class JFormLogin extends javax.swing.JFrame {
         if (ExisteUsuario() == true) {
             JOptionPane.showMessageDialog(null, "Usuario ya existe");
         } else {
-            if (agregar() == true) {
+            if ("".equals(txtUsuario.getText())) {
+                JOptionPane.showMessageDialog(null, "Ingrese usuario");
+            } else if ("".equals(txtContra.getText())) {
+                JOptionPane.showMessageDialog(null, "Ingrese contraseña");
+            } else {
+                agregar();
                 JOptionPane.showMessageDialog(null, "Usuario creado");
             }
         }

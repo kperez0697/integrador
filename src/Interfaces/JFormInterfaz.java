@@ -50,13 +50,17 @@ public final class JFormInterfaz extends javax.swing.JFrame {
                 item = null;
             }
             for (Cliente cliente : Lista) {
-                if (cliente.getMoneda().equals("BTC")) {
-                    btc = cliente.getFondos();
-                } else if (cliente.getMoneda().equals("USDT")) {
-                    usdt = cliente.getFondos();
+                switch (cliente.getMoneda().trim()) {
 
-                } else if (cliente.getMoneda().equals("OASI")) {
-                    oasis = cliente.getFondos();
+                    case "USDT":
+                        usdt = cliente.getFondos();
+                        break;
+                    case "OASI":
+                        oasis = cliente.getFondos();
+                        break;
+                    case "BTC":
+                        btc = cliente.getFondos();
+                        break;
                 }
             }
             DecimalFormat df = new DecimalFormat("#0.0000");
